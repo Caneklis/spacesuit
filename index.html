@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создай своего космонавта</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Создай Своего Космонавта</h1>
+
+        <div class="main-grid">
+            <!-- Left Panel - Customization -->
+            <div class="panel panel--top">
+                <h2>Конструктор</h2>
+
+                <div class="customization-section">
+                    <h3>Имя космонавта:</h3>
+                    <input type="text" class="name-input" id="cosmonautName" placeholder="Введите имя" value="Юный Космонавт">
+                </div>
+
+                <div class="customization-section">
+                    <h3>Выберите скафандр:</h3>
+                    <div class="suit-selector">
+                        <div class="suit-option active" data-suit="red" data-color="#ff4444">
+                            <img src="images/suit-red.png" alt="Красный" onerror="this.style.background='#ff4444'">
+                            <div class="suit-label">Красный</div>
+                        </div>
+                        <!-- <div class="suit-option" data-suit="blue" data-color="#4444ff">
+                            <img src="images/suit-blue.png" alt="Синий" onerror="this.style.background='#4444ff'">
+                            <div class="suit-label">Синий</div>
+                        </div> -->
+                        <div class="suit-option" data-suit="green" data-color="#7dd36b">
+                            <img src="images/suit-green.png" alt="Зеленый" onerror="this.style.background='#7dd36b'">
+                            <div class="suit-label">Зеленый</div>
+                        </div>
+                        <div class="suit-option" data-suit="yellow" data-color="#ffaa00">
+                            <img src="images/suit-yellow.png" alt="Желтый" onerror="this.style.background='#ffaa00'">
+                            <div class="suit-label">Желтый</div>
+                        </div>
+                        <div class="suit-option" data-suit="pink" data-color="#FFC0CB">
+                            <img src="images/suit-pink.png" alt="Оранжевый" onerror="this.style.background='#FFC0CB'">
+                            <div class="suit-label">Розовый</div>
+                        </div>
+                        <div class="suit-option" data-suit="violet" data-color="#E5D0FF">
+                            <img src="images/suit-violet.png" alt="Фиолетовый" onerror="this.style.background='#E5D0FF'">
+                            <div class="suit-label">Фиолетовый</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customization-section">
+                    <h3>Шлем:</h3>
+                    <div class="options-grid">
+                        <div class="option-btn active" data-helmet="classic" title="Классический">
+                          <img src="images/helmet-classic.png" alt="Классический">
+                        </div>
+                        <div class="option-btn" data-helmet="modern" title="Современный">
+                          <img src="images/helmet-modern.png" alt="Современный">
+                        </div>
+                        <div class="option-btn" data-helmet="retro" title="Ретро">
+                          <img src="images/helmet-retro.png" alt="Ретро">
+                        </div>
+                        <div class="option-btn" data-helmet="round" title="Круглый">
+                          <img src="images/helmet-round.png" alt="Круглый">
+                        </div>
+                        <div class="option-btn" data-helmet="pink" title="Розовый">
+                          <img src="images/helmet-pink.png" alt="Розовый">
+                        </div>
+                        <div class="option-btn" data-helmet="green" title="Зеленый">
+                          <img src="images/helmet-green.png" alt="Зеленый">
+                        </div>
+                        <div class="option-btn" data-helmet="violet" title="Фиолетовый">
+                          <img src="images/helmet-violet.png" alt="Фиолетовый">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customization-section">
+                    <h3>Эмблема:</h3>
+                    <div class="options-grid">
+                        <div class="option-btn active" data-emblem="star" title="Звезда">⭐</div>
+                        <div class="option-btn" data-emblem="rocket" title="Ракета">🚀</div>
+                        <div class="option-btn" data-emblem="planet" title="Планета">🪐</div>
+                        <div class="option-btn" data-emblem="flag" title="Флаг">🇷🇺</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center - Preview -->
+            <div class="preview-area">
+                <div class="stars" id="stars"></div>
+                <div class="cosmonaut-container">
+                    <div class="cosmonaut-wrapper">
+                        <!-- Шлем -->
+                        <div class="helmet-layer" id="helmetLayer">
+                            <img src="images/helmet-classic.png" alt="Helmet" id="helmetImage">
+                        </div>
+                        <!-- Скафандр -->
+                        <div class="suit-layer" id="suitLayer">
+                            <img src="images/suit-red.png" alt="Suit" id="suitImage">
+                        </div>
+                        <!-- Эмблема -->
+                        <div class="emblem-layer" id="emblemLayer">
+                            <img src="images/emblem-star.png" alt="Emblem" id="emblemImage">
+                        </div>
+                        <!-- Имя -->
+                        <div class="name-tag" id="nameTag">Юный Космонавт</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Info -->
+            <div class="panel">
+                <h2>Информация</h2>
+                <div class="mission-badge" id="missionBadge">Готов к полету!</div>
+                <div class="mission-story" id="missionStory">
+                    Проверяем шлем, включаем огни на панели и готовим юного пилота к посадке в кабину.
+                </div>
+                <p style="margin-top: 20px; line-height: 1.6; color: #555;">
+                    <strong>Ваш космонавт:</strong><br>
+                    Имя: <span id="infoName">Юный Космонавт</span><br>
+                    Скафандр: <span id="infoSuit">Красный</span><br>
+                    Шлем: <span id="infoHelmet">Классический</span><br>
+                    Эмблема: <span id="infoEmblem">Звезда</span>
+                </p>
+                <div class="action-buttons">
+                    <button class="big-btn cockpit-enter" onclick="enterCockpit()">
+                        В кабину корабля!
+                    </button>
+                    <button class="big-btn generate-cert" onclick="generateCertificate()">
+                        Получить сертификат
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cockpit Modal -->
+    <div class="cockpit-modal" id="cockpitModal">
+        <div class="cockpit-card">
+            <button class="cockpit-close" type="button" aria-label="Закрыть кабину" onclick="closeCockpit()">✕</button>
+            <div class="cockpit-layout">
+                <div class="cockpit-scene">
+                    <div class="cockpit-window">
+                        <div class="stars cockpit-stars" id="cockpitStars"></div>
+                        <div class="cockpit-grid-lines" aria-hidden="true"></div>
+                        <div class="cockpit-window-label" id="cockpitDestinationChip">Маршрут: Созвездие дружбы</div>
+                        <div class="cockpit-side-panel left" aria-hidden="true">
+                            <div class="side-panel-label">Тяга</div>
+                            <div class="side-panel-meter">
+                                <div class="side-panel-fill" style="height: 78%;"></div>
+                            </div>
+                            <div class="side-panel-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="cockpit-side-panel right" aria-hidden="true">
+                            <div class="side-panel-label">Щиты</div>
+                            <div class="side-panel-meter">
+                                <div class="side-panel-fill" style="height: 64%;"></div>
+                            </div>
+                            <div class="side-panel-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="flight-route" aria-hidden="true"></div>
+
+                        <div class="cockpit-cosmonaut">
+                            <div class="cosmonaut-wrapper">
+                                <div class="helmet-layer" id="cockpitHelmetLayer">
+                                    <img src="images/helmet-classic.png" alt="Шлем пилота" id="cockpitHelmetImage">
+                                </div>
+                                <div class="suit-layer" id="cockpitSuitLayer">
+                                    <img src="images/suit-red.png" alt="Скафандр пилота" id="cockpitSuitImage">
+                                </div>
+                                <div class="emblem-layer" id="cockpitEmblemLayer">
+                                    <img src="images/emblem-star.png" alt="Эмблема пилота" id="cockpitEmblemImage">
+                                </div>
+                                <div class="name-tag" id="cockpitNameTag">Юный Космонавт</div>
+                            </div>
+                        </div>
+
+                        <div class="cockpit-seat"></div>
+
+                        <div class="cockpit-console">
+                            <div class="console-screen">
+                                <span class="console-label">Системы</span>
+                                <div class="console-value" id="cockpitSystemState">100% готовности</div>
+                            </div>
+                            <div class="console-screen">
+                                <span class="console-label">Маршрут</span>
+                                <div class="console-value" id="cockpitRoute">Созвездие дружбы</div>
+                            </div>
+                            <div class="console-lights" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cockpit-sidebar">
+                    <div class="cockpit-badge">Кабина корабля</div>
+                    <h2 class="cockpit-title">Пилот готов к старту</h2>
+                    <p class="cockpit-description" id="cockpitMessage">
+                        Юный Космонавт уже занял место у приборной панели и ждёт команду на полёт.
+                    </p>
+
+                    <div class="cockpit-stats">
+                        <div class="cockpit-stat">
+                            <div class="cockpit-stat-label">Космонавт</div>
+                            <div class="cockpit-stat-value" id="cockpitName">Юный Космонавт</div>
+                        </div>
+                        <div class="cockpit-stat">
+                            <div class="cockpit-stat-label">Скафандр</div>
+                            <div class="cockpit-stat-value" id="cockpitSuit">Красный</div>
+                        </div>
+                        <div class="cockpit-stat">
+                            <div class="cockpit-stat-label">Шлем</div>
+                            <div class="cockpit-stat-value" id="cockpitHelmet">Классический</div>
+                        </div>
+                        <div class="cockpit-stat">
+                            <div class="cockpit-stat-label">Эмблема</div>
+                            <div class="cockpit-stat-value" id="cockpitEmblem">Звезда</div>
+                        </div>
+                    </div>
+
+                    <div class="cockpit-checklist">
+                        <div class="cockpit-check">Проверка шлема завершена</div>
+                        <div class="cockpit-check">Панель управления светится и готова к старту</div>
+                        <div class="cockpit-check">Иллюминатор показывает звёздный маршрут</div>
+                    </div>
+
+                    <div class="cockpit-action-row">
+                        <button class="action-btn download-btn" type="button" onclick="generateCertificate()">
+                            🏆 Скачать сертификат
+                        </button>
+                        <button class="action-btn close-btn" type="button" onclick="closeCockpit()">
+                            ↩ К конструктору
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificateModal">
+        <div class="certificate-container">
+            <canvas id="certificateCanvas" width="800" height="600"></canvas>
+            <div class="certificate-actions">
+                <button class="action-btn download-btn" onclick="downloadCertificate()">
+                    💾 Скачать сертификат
+                </button>
+                <button class="action-btn close-btn" onclick="closeCertificate()">
+                    ✕ Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SUIT_NAMES = {
+            red: 'Красный',
+            green: 'Зеленый',
+            yellow: 'Желтый',
+            pink: 'Розовый',
+            violet: 'Фиолетовый'
+        };
+
+        const HELMET_NAMES = {
+            classic: 'Классический',
+            modern: 'Современный',
+            retro: 'Ретро',
+            round: 'Круглый',
+            pink: 'Розовый',
+            green: 'Зеленый',
+            violet: 'Фиолетовый'
+        };
+
+        const EMBLEM_NAMES = {
+            star: 'Звезда',
+            rocket: 'Ракета',
+            planet: 'Планета',
+            flag: 'Флаг'
+        };
+
+        const DESTINATIONS = {
+            star: 'Созвездие дружбы',
+            rocket: 'Ракетная орбита',
+            planet: 'Планета приключений',
+            flag: 'Станция смелых'
+        };
+
+        const processedAssetCache = new Map();
+        let renderRequestCounter = 0;
+
+        let currentConfig = {
+            name: 'Юный Космонавт',
+            suit: 'red',
+            suitColor: '#ff4444',
+            helmet: 'classic',
+            emblem: 'star'
+        };
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            createStars('stars', 100);
+            createStars('cockpitStars', 70);
+            setupEventListeners();
+            updateInfo();
+            await refreshCharacterRender();
+        });
+
+        function createStars(containerId, count) {
+            const starsContainer = document.getElementById(containerId);
+            if (!starsContainer) {
+                return;
+            }
+
+            starsContainer.innerHTML = '';
+            for (let i = 0; i < count; i += 1) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 4 + 2}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('cosmonautName').addEventListener('input', (event) => {
+                currentConfig.name = event.target.value.trim() || 'Юный Космонавт';
+                updateInfo();
+            });
+
+            document.querySelectorAll('.suit-option').forEach((button) => {
+                button.addEventListener('click', async () => {
+                    document.querySelectorAll('.suit-option').forEach((item) => item.classList.remove('active'));
+                    button.classList.add('active');
+                    currentConfig.suit = button.dataset.suit;
+                    currentConfig.suitColor = button.dataset.color;
+                    updateInfo();
+                    await renderSuit();
+                });
+            });
+
+            document.querySelectorAll('[data-helmet]').forEach((button) => {
+                button.addEventListener('click', async () => {
+                    document.querySelectorAll('[data-helmet]').forEach((item) => item.classList.remove('active'));
+                    button.classList.add('active');
+                    currentConfig.helmet = button.dataset.helmet;
+                    updateInfo();
+                    await renderHelmet();
+                });
+            });
+
+            document.querySelectorAll('[data-emblem]').forEach((button) => {
+                button.addEventListener('click', async () => {
+                    document.querySelectorAll('[data-emblem]').forEach((item) => item.classList.remove('active'));
+                    button.classList.add('active');
+                    currentConfig.emblem = button.dataset.emblem;
+                    updateInfo();
+                    await renderEmblem();
+                });
+            });
+
+            document.getElementById('cockpitModal').addEventListener('click', (event) => {
+                if (event.target.id === 'cockpitModal') {
+                    closeCockpit();
+                }
+            });
+
+            document.getElementById('certificateModal').addEventListener('click', (event) => {
+                if (event.target.id === 'certificateModal') {
+                    closeCertificate();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeCockpit();
+                    closeCertificate();
+                }
+            });
+        }
+
+        function getDestination() {
+            return DESTINATIONS[currentConfig.emblem] || 'Созвездие дружбы';
+        }
+
+        function getMissionText() {
+            const destination = getDestination();
+            return `${currentConfig.name} готов и собирается в путь к точке "${destination}". Нажми "В кабину корабля", чтобы увидеть героя внутри корабля.`;
+        }
+
+        function updateInfo() {
+            const suitName = SUIT_NAMES[currentConfig.suit] || 'Красный';
+            const helmetName = HELMET_NAMES[currentConfig.helmet] || 'Классический';
+            const emblemName = EMBLEM_NAMES[currentConfig.emblem] || 'Звезда';
+            const destination = getDestination();
+
+            document.getElementById('nameTag').textContent = currentConfig.name;
+            document.getElementById('cockpitNameTag').textContent = currentConfig.name;
+
+            document.getElementById('infoName').textContent = currentConfig.name;
+            document.getElementById('infoSuit').textContent = suitName;
+            document.getElementById('infoHelmet').textContent = helmetName;
+            document.getElementById('infoEmblem').textContent = emblemName;
+
+            document.getElementById('missionBadge').textContent = `Маршрут: ${destination}`;
+            document.getElementById('missionStory').textContent = getMissionText();
+
+            document.getElementById('cockpitName').textContent = currentConfig.name;
+            document.getElementById('cockpitSuit').textContent = suitName;
+            document.getElementById('cockpitHelmet').textContent = helmetName;
+            document.getElementById('cockpitEmblem').textContent = emblemName;
+            document.getElementById('cockpitRoute').textContent = destination;
+            document.getElementById('cockpitDestinationChip').textContent = `Маршрут: ${destination}`;
+            document.getElementById('cockpitSystemState').textContent = '100% готовности';
+            document.getElementById('cockpitMessage').textContent =
+                `${currentConfig.name} уже в ${suitName.toLowerCase()} скафандре и ждёт команду на полёт к точке "${destination}".`;
+        }
+
+        function getSuitSource() {
+            return `images/suit-${currentConfig.suit}.png`;
+        }
+
+        function getHelmetSource() {
+            return `images/helmet-${currentConfig.helmet}.png`;
+        }
+
+        function getEmblemSource() {
+            return `images/emblem-${currentConfig.emblem}.png`;
+        }
+
+        async function refreshCharacterRender() {
+            await Promise.all([
+                renderSuit(),
+                renderHelmet(),
+                renderEmblem()
+            ]);
+        }
+
+        async function renderSuit() {
+            const source = getSuitSource();
+            await Promise.all([
+                setProcessedImage(document.getElementById('suitImage'), source, {
+                    fallbackContainer: document.getElementById('suitLayer'),
+                    fallbackColor: currentConfig.suitColor
+                }),
+                setProcessedImage(document.getElementById('cockpitSuitImage'), source, {
+                    fallbackContainer: document.getElementById('cockpitSuitLayer'),
+                    fallbackColor: currentConfig.suitColor
+                })
+            ]);
+        }
+
+        async function renderHelmet() {
+            const source = getHelmetSource();
+            await Promise.all([
+                setProcessedImage(document.getElementById('helmetImage'), source, {
+                    hideOnError: true
+                }),
+                setProcessedImage(document.getElementById('cockpitHelmetImage'), source, {
+                    hideOnError: true
+                })
+            ]);
+        }
+
+        async function renderEmblem() {
+            const source = getEmblemSource();
+            await Promise.all([
+                setProcessedImage(document.getElementById('emblemImage'), source, {
+                    hideOnError: true
+                }),
+                setProcessedImage(document.getElementById('cockpitEmblemImage'), source, {
+                    hideOnError: true
+                })
+            ]);
+        }
+
+        async function setProcessedImage(imageElement, source, options = {}) {
+            if (!imageElement) {
+                return;
+            }
+
+            const {
+                hideOnError = false,
+                fallbackContainer = null,
+                fallbackColor = ''
+            } = options;
+
+            const requestId = String(renderRequestCounter += 1);
+            imageElement.dataset.requestId = requestId;
+
+            try {
+                const asset = await getProcessedAsset(source);
+                if (imageElement.dataset.requestId !== requestId) {
+                    return;
+                }
+
+                imageElement.src = asset.dataUrl;
+                imageElement.style.display = 'block';
+
+                if (fallbackContainer) {
+                    fallbackContainer.style.background = 'transparent';
+                }
+            } catch (error) {
+                if (imageElement.dataset.requestId !== requestId) {
+                    return;
+                }
+
+                if (hideOnError) {
+                    imageElement.style.display = 'none';
+                }
+
+                if (fallbackContainer && fallbackColor) {
+                    fallbackContainer.style.background = fallbackColor;
+                }
+            }
+        }
+
+        function getProcessedAsset(source) {
+            if (processedAssetCache.has(source)) {
+                return processedAssetCache.get(source);
+            }
+
+            const assetPromise = new Promise((resolve, reject) => {
+                const image = new Image();
+                image.crossOrigin = "anonymous";
+
+                image.onload = () => {
+                    const processedCanvas = removeBackgroundFromImage(image);
+                    const trimmedAsset = trimTransparentCanvas(processedCanvas);
+                    resolve({
+                        canvas: processedCanvas,
+                        trimmedCanvas: trimmedAsset.canvas,
+                        dataUrl: processedCanvas.toDataURL('image/png')
+                    });
+                };
+
+                image.onerror = () => reject(new Error(`Не удалось загрузить ${source}`));
+                image.src = source;
+            });
+
+            processedAssetCache.set(source, assetPromise);
+            return assetPromise;
+        }
+
+        function removeBackgroundFromImage(image) {
+            const canvas = document.createElement('canvas');
+            canvas.width = image.naturalWidth || image.width;
+            canvas.height = image.naturalHeight || image.height;
+
+            const ctx = canvas.getContext('2d', { willReadFrequently: true });
+            ctx.drawImage(image, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const { data, width, height } = imageData;
+            const visited = new Uint8Array(width * height);
+            const queue = new Uint32Array(width * height);
+            let head = 0;
+            let tail = 0;
+
+            const isBackgroundPixel = (index) => {
+                const offset = index * 4;
+                const red = data[offset];
+                const green = data[offset + 1];
+                const blue = data[offset + 2];
+                const brightness = (red + green + blue) / 3;
+                const spread = Math.max(red, green, blue) - Math.min(red, green, blue);
+                return brightness > 226 && spread < 32;
+            };
+
+            const enqueue = (index) => {
+                if (index < 0 || index >= visited.length || visited[index] || !isBackgroundPixel(index)) {
+                    return;
+                }
+
+                visited[index] = 1;
+                queue[tail] = index;
+                tail += 1;
+            };
+
+            for (let x = 0; x < width; x += 1) {
+                enqueue(x);
+                enqueue((height - 1) * width + x);
+            }
+
+            for (let y = 0; y < height; y += 1) {
+                enqueue(y * width);
+                enqueue(y * width + width - 1);
+            }
+
+            while (head < tail) {
+                const index = queue[head];
+                head += 1;
+
+                const offset = index * 4;
+                data[offset + 3] = 0;
+
+                const x = index % width;
+                const y = Math.floor(index / width);
+
+                if (x > 0) {
+                    enqueue(index - 1);
+                }
+                if (x < width - 1) {
+                    enqueue(index + 1);
+                }
+                if (y > 0) {
+                    enqueue(index - width);
+                }
+                if (y < height - 1) {
+                    enqueue(index + width);
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+            return canvas;
+        }
+
+        function trimTransparentCanvas(sourceCanvas) {
+            const sourceContext = sourceCanvas.getContext('2d', { willReadFrequently: true });
+            const { data, width, height } = sourceContext.getImageData(0, 0, sourceCanvas.width, sourceCanvas.height);
+
+            let minX = width;
+            let minY = height;
+            let maxX = -1;
+            let maxY = -1;
+
+            for (let y = 0; y < height; y += 1) {
+                for (let x = 0; x < width; x += 1) {
+                    const alpha = data[(y * width + x) * 4 + 3];
+                    if (alpha === 0) {
+                        continue;
+                    }
+
+                    minX = Math.min(minX, x);
+                    minY = Math.min(minY, y);
+                    maxX = Math.max(maxX, x);
+                    maxY = Math.max(maxY, y);
+                }
+            }
+
+            if (maxX < minX || maxY < minY) {
+                return { canvas: sourceCanvas };
+            }
+
+            const trimmedCanvas = document.createElement('canvas');
+            trimmedCanvas.width = maxX - minX + 1;
+            trimmedCanvas.height = maxY - minY + 1;
+
+            const trimmedContext = trimmedCanvas.getContext('2d');
+            trimmedContext.drawImage(
+                sourceCanvas,
+                minX,
+                minY,
+                trimmedCanvas.width,
+                trimmedCanvas.height,
+                0,
+                0,
+                trimmedCanvas.width,
+                trimmedCanvas.height
+            );
+
+            return { canvas: trimmedCanvas };
+        }
+
+        function syncBodyModalState() {
+            const hasOpenModal = document.querySelector('.cockpit-modal.active, .certificate-modal.active');
+            document.body.classList.toggle('modal-open', Boolean(hasOpenModal));
+        }
+
+        function enterCockpit() {
+            updateInfo();
+            refreshCharacterRender();
+            document.getElementById('cockpitModal').classList.add('active');
+            syncBodyModalState();
+        }
+
+        function closeCockpit() {
+            document.getElementById('cockpitModal').classList.remove('active');
+            syncBodyModalState();
+        }
+
+        async function drawCompositeCosmonaut(ctx, centerX, baseY, scale = 1) {
+            const [suitAsset, helmetAsset, emblemAsset] = await Promise.all([
+                getProcessedAsset(getSuitSource()),
+                getProcessedAsset(getHelmetSource()),
+                getProcessedAsset(getEmblemSource())
+            ]);
+
+            const suitCanvas = suitAsset.trimmedCanvas || suitAsset.canvas;
+            const helmetCanvas = helmetAsset.trimmedCanvas || helmetAsset.canvas;
+            const emblemCanvas = emblemAsset.trimmedCanvas || emblemAsset.canvas;
+
+            const suitHeight = 310 * scale;
+            const suitWidth = suitHeight * (suitCanvas.width / suitCanvas.height);
+            const helmetHeight = 110 * scale;
+            const helmetWidth = helmetHeight * (helmetCanvas.width / helmetCanvas.height);
+            const emblemHeight = 36 * scale;
+            const emblemWidth = emblemHeight * (emblemCanvas.width / emblemCanvas.height);
+
+            const suitX = centerX - suitWidth / 2;
+            const suitY = baseY - suitHeight;
+            const helmetX = centerX - helmetWidth / 2;
+            const helmetY = suitY - helmetHeight * 0.60;
+            const emblemX = centerX - emblemWidth / 2;
+            const emblemY = suitY + suitHeight * 0.25;
+
+            ctx.save();
+            ctx.fillStyle = 'rgba(6, 18, 44, 0.24)';
+            ctx.beginPath();
+            ctx.ellipse(centerX, baseY + 8 * scale, 78 * scale, 16 * scale, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.drawImage(
+                suitCanvas,
+                suitX,
+                suitY,
+                suitWidth,
+                suitHeight
+            );
+
+            ctx.drawImage(
+                helmetCanvas,
+                helmetX,
+                helmetY,
+                helmetWidth,
+                helmetHeight
+            );
+
+            ctx.drawImage(
+                emblemCanvas,
+                emblemX,
+                emblemY,
+                emblemWidth,
+                emblemHeight
+            );
+
+            ctx.restore();
+        }
+
+        async function generateCertificate() {
+            closeCockpit();
+
+            const modal = document.getElementById('certificateModal');
+            const canvas = document.getElementById('certificateCanvas');
+            const ctx = canvas.getContext('2d');
+
+            modal.classList.add('active');
+            syncBodyModalState();
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 600);
+            gradient.addColorStop(0, '#091938');
+            gradient.addColorStop(1, '#254d93');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 800, 600);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.9)';
+            for (let i = 0; i < 120; i += 1) {
+                ctx.beginPath();
+                ctx.arc(Math.random() * 800, Math.random() * 600, Math.random() * 2.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 10;
+            ctx.strokeRect(20, 20, 760, 560);
+
+            // ctx.fillStyle = 'rgba(9, 25, 56, 0.55)';
+            // ctx.fillRect(54, 118, 236, 380);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.fillRect(320, 118, 426, 380);
+
+            ctx.fillStyle = '#FFD700';
+            ctx.textAlign = 'center';
+            ctx.font = 'bold 48px Alumni Sans';
+            ctx.fillText('СЕРТИФИКАТ', 400, 82);
+
+            ctx.textAlign = 'left';
+            ctx.fillStyle = '#9fe7ff';
+            ctx.font = 'bold 22px Alumni Sans';
+            ctx.fillText('Пилот сертификата', 350, 152);
+
+            ctx.fillStyle = '#fff';
+            ctx.font = '24px Alumni Sans';
+            ctx.fillText('Настоящим удостоверяется, что', 350, 190);
+
+            ctx.fillStyle = '#FFD700';
+            ctx.font = 'bold 40px Alumni Sans';
+            ctx.fillText(currentConfig.name, 350, 238);
+
+            ctx.fillStyle = '#fff';
+            ctx.font = '22px Alumni Sans';
+            ctx.fillText('успешно собрал свой скафандр,', 350, 280);
+            ctx.fillText('прошёл предполётную подготовку', 350, 310);
+            ctx.fillText('и занял место в кабине корабля.', 350, 340);
+
+            ctx.fillStyle = '#9fe7ff';
+            ctx.font = '20px Alumni Sans';
+            ctx.fillText(`Маршрут мечты: ${getDestination()}`, 350, 380);
+
+            ctx.fillStyle = '#d8ecff';
+            ctx.font = '18px Alumni Sans';
+            ctx.fillText(`Скафандр: ${SUIT_NAMES[currentConfig.suit] || 'Красный'}`, 350, 405);
+            ctx.fillText(`Шлем: ${HELMET_NAMES[currentConfig.helmet] || 'Классический'}`, 350, 430);
+            ctx.fillText(`Эмблема: ${EMBLEM_NAMES[currentConfig.emblem] || 'Звезда'}`, 350, 455);
+
+            await drawCompositeCosmonaut(ctx, 172, 500, 1);
+
+            const date = new Date().toLocaleDateString('ru-RU');
+            ctx.fillStyle = '#FFD700';
+            ctx.textAlign = 'center';
+            ctx.font = '24px Alumni Sans';
+            ctx.fillText(`Дата: ${date}`, 415, 485);
+        }
+
+        function closeCertificate() {
+            document.getElementById('certificateModal').classList.remove('active');
+            syncBodyModalState();
+        }
+
+        function downloadCertificate() {
+            const canvas = document.getElementById('certificateCanvas');
+            const link = document.createElement('a');
+            const safeName = currentConfig.name.replace(/\s+/g, '_');
+            link.download = `Сертификат_${safeName}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
