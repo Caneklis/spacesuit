@@ -354,11 +354,11 @@ html {
         }
 
         .mission-badge {
-
-            padding: 10px 20px;
+            display: grid;
+            align-items:center;
+            padding: 10px 20px ;
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             border-radius: 16px;
-            margin: 5px;
             font-weight: bold;
             color: #333;
             font-size: 1.4em;
